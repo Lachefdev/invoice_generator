@@ -109,20 +109,28 @@ beige #d6d1b9
 .subject-line {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     margin-bottom: 60px;
 }
 
 .left-hand-side, .right-hand-side {
-    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
 }
 
 .invoice-title {
+    align-self: flex-start;
     font-weight: bold;
     font-size: 2em;
 }
 
 .invoice-id {
+    align-self: flex-start;
     color: #bbb;
+}
+
+.invoice-date, .customer-id {
+    align-self: flex-start;
 }
 
 /* Positionierung % */

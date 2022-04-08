@@ -2,7 +2,12 @@
 
 //Nano
 const db = require('nano')('http://alfa:alfa@127.0.0.1:5984').db;
-const dbName = 'kunden';
+const dbName = 'customers';
+
+exports.saveCustomer = () => {
+    const customerDB = db.use(dbName);
+    return customerDB.insert()
+}
 
 exports.init = () => {
     db.list().then(

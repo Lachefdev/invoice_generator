@@ -9,10 +9,11 @@
     <link rel="stylesheet" href="styles.css">
 
     <script src="index.js" type="module" defer></script>
+
 </head>
 
 <body>
-   
+
     <h1></h1>
 
     <div class="container">
@@ -44,7 +45,7 @@
                         <!-- Number.. maybe -->
                         <div class="form-item">
                             <label for="recipient-house-number" class="form-label"></label>
-                            <input type="text" name="recipient-house-number" id="recipient-house"
+                            <input type="text" name="recipient-house-number" id="recipient-house-number"
                                 placeholder="house number">
                             <span class="form-error"></span>
                         </div>
@@ -63,11 +64,11 @@
                         </div>
                     </div>
                 </div>
-               
+
                 <div class="company-data">
                     <span class="company-name">YoTa Charms</span>
                     <span class="company-adress">Kettenschmiede 7</span>
-                    <span class="company-location">32776 Edelhausen</span>
+                    <span class="company-location">32776 Ederhausen</span>
                 </div>
             </div>
             <!-- subject -->
@@ -87,6 +88,7 @@
                     </span>
                 </div>
             </div>
+            <button type="submit">Save</button>
         </form>
         <!-- purchase-overview -->
         <div class="legend">
@@ -184,7 +186,32 @@
         </div>
     </div>
 
+    <button type="submit" class="btnForm">Generate Invoice</button>
+
 
 </body>
+
+<script>
+
+
+    //FUNKTIONEN
+    const $ = selector => {
+        return document.querySelector(selector)
+    }
+
+    let customerId = $('.customer-id');
+    let invoiceId = $('.invoice-id');
+
+    let invoiceDate = $('.invoice-date');
+    let date = new Date(), options = {year: 'numeric', month: 'long', day: 'numeric'};
+    invoiceDate.innerHTML = date.toLocaleString('de-DE', options);
+
+    let invoiceDue = $('.due-date');
+    invoiceDue.innerHTML = date.setDate((date.getDate().toLocaleString('de-DE', options) + 30)).toLocaleString('de-DE', options);
+
+    let invoiceTotal = $('.total-amount');
+
+
+</script>
 
 </html>
