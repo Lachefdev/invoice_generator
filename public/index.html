@@ -12,56 +12,63 @@
 </head>
 
 <body>
-    <h1>Website</h1>
+   
+    <h1></h1>
 
     <div class="container">
         <form class="form">
-            <!-- letter head -->
-            <div class="recipient-adress">
-                <div class="first-line">
-                    <div class="form-item">
-                        <label for="recipient-name" class="form-label"></label>
-                        <input type="text" name="recipient-name" id="recipient-name" placeholder="name">
-                        <span class="form-error"></span>
-                    </div>
-                    <div class="form-item">
-                        <label for="recipient-last-name" class="form-label"></label>
-                        <input type="text" name="recipient-last-name" id="recipient-last-name" placeholder="last name">
-                        <span class="form-error"></span>
-                    </div>
-                </div>
-                <div class="second-line">
-                    <div class="form-item">
-                        <label for="recipient-road" class="form-label"></label>
-                        <input type="text" name="recipient-road" id="recipient-road" placeholder="road">
-                        <span class="form-error"></span>
-                    </div>
-                    <!-- Number.. maybe -->
-                    <div class="form-item">
-                        <label for="recipient-house-number" class="form-label"></label>
-                        <input type="text" name="recipient-house-number" id="recipient-house" placeholder="house number">
-                        <span class="form-error"></span>
-                    </div>
-                </div>
-                <div class="third-line">
-                    <!-- Number -->
-                    <div class="form-item">
-                        <label for="recipient-zip-code" class="form-label"></label>
-                        <input type="text" name="recipient-zip-code" id="recipient-zip-code" placeholder="zip code">
-                        <span class="form-error"></span>
-                    </div>
-                    <div class="form-item">
-                        <label for="recipient-city" class="form-label"></label>
-                        <input type="text" name="recipient-city" id="recipient-city" placeholder="city">
-                        <span class="form-error"></span>
-                    </div>
-                </div>
-            </div>
             <!-- Logo missing -->
-            <div class="company-adress">
-                <span class="company-name">YoTa Charms</span>
-                <span class="company-adress">Kettenschmiede 7</span>
-                <span class="company-location">32776 Edelhausen</span>
+
+            <!-- letter head -->
+            <div class="letter-head">
+                <div class="recipient-adress">
+                    <div class="first-line">
+                        <div class="form-item">
+                            <label for="recipient-name" class="form-label"></label>
+                            <input type="text" name="recipient-name" id="recipient-name" placeholder="name">
+                            <span class="form-error"></span>
+                        </div>
+                        <div class="form-item">
+                            <label for="recipient-last-name" class="form-label"></label>
+                            <input type="text" name="recipient-last-name" id="recipient-last-name"
+                                placeholder="last name">
+                            <span class="form-error"></span>
+                        </div>
+                    </div>
+                    <div class="second-line">
+                        <div class="form-item">
+                            <label for="recipient-road" class="form-label"></label>
+                            <input type="text" name="recipient-road" id="recipient-road" placeholder="road">
+                            <span class="form-error"></span>
+                        </div>
+                        <!-- Number.. maybe -->
+                        <div class="form-item">
+                            <label for="recipient-house-number" class="form-label"></label>
+                            <input type="text" name="recipient-house-number" id="recipient-house"
+                                placeholder="house number">
+                            <span class="form-error"></span>
+                        </div>
+                    </div>
+                    <div class="third-line">
+                        <!-- Number -->
+                        <div class="form-item">
+                            <label for="recipient-zip-code" class="form-label"></label>
+                            <input type="text" name="recipient-zip-code" id="recipient-zip-code" placeholder="zip code">
+                            <span class="form-error"></span>
+                        </div>
+                        <div class="form-item">
+                            <label for="recipient-city" class="form-label"></label>
+                            <input type="text" name="recipient-city" id="recipient-city" placeholder="city">
+                            <span class="form-error"></span>
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="company-data">
+                    <span class="company-name">YoTa Charms</span>
+                    <span class="company-adress">Kettenschmiede 7</span>
+                    <span class="company-location">32776 Edelhausen</span>
+                </div>
             </div>
             <!-- subject -->
             <div class="subject-line">
@@ -86,7 +93,7 @@
             <span class="item">Item</span>
             <span class="quantity">Quantity</span>
             <span class="subtotal">Subtotal</span>
-        </div>
+        </div><br>
         <form class="listing" action="">
             <div class="listings-item">
 
@@ -97,8 +104,48 @@
                 <!-- Placed by catalogue -->
                 <input type="text" name="product-price" id="product-price">
 
+            </div><br>
+            <div class="listings-item">
+
+                <input type="text" name="product-name" id="product-name">
+                <!-- Show Error -->
+                <input type="number" name="product-quantity" id="product-quantity">
+                <span class="quantity-error"></span>
+                <!-- Placed by catalogue -->
+                <input type="text" name="product-price" id="product-price">
+
+            </div><br>
+            <div class="listings-item">
+
+                <input type="text" name="product-name" id="product-name">
+                <!-- Show Error -->
+                <input type="number" name="product-quantity" id="product-quantity">
+                <span class="quantity-error"></span>
+                <!-- Placed by catalogue -->
+                <input type="text" name="product-price" id="product-price">
+
+            </div><br>
+            <div class="listings-item">
+
+                <input type="text" name="product-name" id="product-name">
+                <!-- Show Error -->
+                <input type="number" name="product-quantity" id="product-quantity">
+                <span class="quantity-error"></span>
+                <!-- Placed by catalogue -->
+                <input type="text" name="product-price" id="product-price">
+
+            </div><br>
+            <div class="listings-item">
+
+                <input type="text" name="product-name" id="product-name">
+                <!-- Show Error -->
+                <input type="number" name="product-quantity" id="product-quantity">
+                <span class="quantity-error"></span>
+                <!-- Placed by catalogue -->
+                <input type="text" name="product-price" id="product-price">
+
             </div>
-        </form>
+        </form><br><br>
         <!-- payment matters -->
         <div class="payment-matters">
             <div class="bank-details">
@@ -112,11 +159,10 @@
                     <!-- calculated by invoice-date -->
                 </span>
             </div>
-            <div class="invoive-total">
+            <div class="invoice-total">
                 <span class="total-title">Total</span>
-                <span class="total-amount">
-                    <!-- calculated by listed items -->
-                </span>
+                <!-- calculated by listed items -->
+                <span class="total-amount"></span>
                 <span class="taxes">includes 19% VAT</span>
             </div>
         </div>

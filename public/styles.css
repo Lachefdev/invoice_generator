@@ -1,0 +1,188 @@
+/* 
+Schriften
+
+orange #b2620b
+dunkelrot #761c20
+beige #d6d1b9
+
+*/
+
+* {
+    box-sizing: border-box;
+  }
+
+.container {
+
+    position: relative;
+    display: block;
+    padding: 35px;
+    margin: 5px;
+    
+    border: 1px solid #aaa;
+    border-radius: 5px;
+
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 1.5em;
+}
+
+.form * {
+    box-sizing: border-box;
+    line-height: 1.5em;
+}
+
+.letter-head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 240px;
+}
+
+.recipient-adress {
+    align-self: flex-start;
+    margin-top: 120px;
+    margin-left: 60px;
+}
+
+/* Kopfzeile */
+.company-data {
+    margin-top: 120px;
+    margin-right: 120px;
+    display: flex;
+    flex-direction: column;
+}
+
+.company-adress > * {
+    align-self: flex-start;
+}
+
+.first-line, .second-line , .third-line {
+    display: flex;
+    flex-direction: row;
+}
+
+.first-line > * , .second-line > * , .third-line > * {
+    align-self: flex-start;
+}
+
+.form-item > input, .listings-item > input {
+
+    -webkit-appearance: none;
+
+    width: 100%;
+    max-width: 425px;
+
+    /* Fix for the appearance of Safari/iOS data fields*/
+    min-height: calc(0.9em + (0.8 * 2) +0.6em);
+
+    padding: 0.8em;
+    font-size: 0.9em;
+    font-family: sans-serif;
+
+    outline: none;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #f9f9f9;
+    transition: background 0.25s, border-color 0.25s, color 0.25s;
+}
+
+.form-item > input:focus, .listings-item > input:focus {
+    background: #fff;
+}
+
+.form-item > input::placeholder, .listings-item > input::placeholder {
+    color: #bbb;
+}
+
+/* Funktionalität JS */
+.form-error, .quantity-error {
+    color: #d50000;
+    background-color: #fff8f8;
+    border-color: #dd5500;
+    visibility: hidden;
+}
+
+.form-item > input + .form-error, .listings-item > input + .quantity-error {
+    visibility: visible;
+}
+
+.subject-line {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 60px;
+}
+
+.left-hand-side, .right-hand-side {
+    align-self: flex-start;
+}
+
+.invoice-title {
+    font-weight: bold;
+    font-size: 2em;
+}
+
+.invoice-id {
+    color: #bbb;
+}
+
+/* Positionierung % */
+.legend {
+    font-weight: bold;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.listings-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.listings-item > * {
+
+}
+
+.payment-matters {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 240px;
+}
+
+.bank-details, .payment-due, .invoice-total {
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+}
+
+.bank-title, .due-title, .total-title {
+    font-weight: bold;
+}
+
+.customer-relations {
+    font-weight: bold;
+    font-size: 1.5em;
+    position: absolute;
+    right: 120px;
+    bottom: 240px;
+} 
+
+.company-credentials {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 420px;
+}
+
+.company-item {
+    align-self: flex-start;
+}
+
+.company-court, .company-ust, .company-url {
+    font-weight: bold;
+}
+
+
+
