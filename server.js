@@ -1,5 +1,7 @@
 'use strict';
 
+const { initBase, saveProducts } = require('./catalogue');
+
 //Express
 const express = require('express');
 const server = express();
@@ -54,7 +56,7 @@ server.post('/save_customer', (req, res) => {
 //INIT
 const init = () => {
 
-    db.initBase();
+    initBase();
     db.init();
     server.listen(80, err => console.log(err || 'Server läuft'));
 }

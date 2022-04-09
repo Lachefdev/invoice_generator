@@ -47,9 +47,26 @@ const products = [
 //console.log(products[0].id);
 //const product = products[0];
 
-exports.saveProducts = () => {
+
+const saveProducts = () => {
     let catalogueDB = db.use(baseName);
     products.forEach(el => {return catalogueDB.insert(el)})
+}
+
+
+exports.initBase = () => {
+    db.list().then(
+        res => {
+            if (!res.includes(baseName)) db.create(baseName);
+            else true
+        }
+
+    ).then(
+        () => console.log('Base ist bereit!')
+
+    ).then(
+        saveProducts()
+    )
 }
 
 

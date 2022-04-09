@@ -1,11 +1,14 @@
 /* 
-Schriften
 
 orange #b2620b
 dunkelrot #761c20
 beige #d6d1b9
 
 */
+
+@import url('https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&family=Roboto:wght@400;700&display=swap');
+
+
 
 * {
     box-sizing: border-box;
@@ -21,9 +24,10 @@ beige #d6d1b9
     border: 1px solid #aaa;
     border-radius: 5px;
 
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif;;
     font-size: 16px;
     line-height: 1.5em;
+    color: #2d2d2d;
 }
 
 .form * {
@@ -31,10 +35,21 @@ beige #d6d1b9
     line-height: 1.5em;
 }
 
-.letter-head {
+.company-data {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.company-name {
+    margin-left: 320px;
+}
+
+.company-location {
+    margin-right: 320px;
+}
+
+.letter-head {
     margin-bottom: 240px;
 }
 
@@ -42,18 +57,6 @@ beige #d6d1b9
     align-self: flex-start;
     margin-top: 120px;
     margin-left: 60px;
-}
-
-/* Kopfzeile */
-.company-data {
-    margin-top: 120px;
-    margin-right: 120px;
-    display: flex;
-    flex-direction: column;
-}
-
-.company-adress > * {
-    align-self: flex-start;
 }
 
 .first-line, .second-line , .third-line {
@@ -77,12 +80,12 @@ beige #d6d1b9
 
     padding: 0.8em;
     font-size: 0.9em;
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif;;
 
     outline: none;
     border: 1px solid #ddd;
     border-radius: 4px;
-    background: #f9f9f9;
+    background: #f8f7f4;
     transition: background 0.25s, border-color 0.25s, color 0.25s;
 }
 
@@ -96,9 +99,9 @@ beige #d6d1b9
 
 /* Funktionalität JS */
 .form-error, .quantity-error {
-    color: #d50000;
+    color: #761c20;
     background-color: #fff8f8;
-    border-color: #dd5500;
+    border-color: #b2620b;
     visibility: hidden;
 }
 
@@ -106,31 +109,30 @@ beige #d6d1b9
     visibility: visible;
 }
 
-.subject-line {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 60px;
+.invoice-date {
+    margin-left: 120px;
 }
 
-.left-hand-side, .right-hand-side {
+.subject-line {
+    margin-bottom: 180px;
+    margin-left: 120px;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
 }
 
 .invoice-title {
-    align-self: flex-start;
-    font-weight: bold;
-    font-size: 2em;
+    font-family: 'Covered By Your Grace', cursive;
+    font-size: 4em;
+    color: #b2620b;
 }
 
 .invoice-id {
-    align-self: flex-start;
-    color: #bbb;
+    color: #b2620b;
 }
 
-.invoice-date, .customer-id {
-    align-self: flex-start;
+.customer-id {
+    margin-right: 60px;
+    font-weight: bold;
 }
 
 /* Positionierung % */
@@ -148,10 +150,6 @@ beige #d6d1b9
     justify-content: space-between;
 }
 
-.listings-item > * {
-
-}
-
 .payment-matters {
     display: flex;
     flex-direction: row;
@@ -159,7 +157,7 @@ beige #d6d1b9
     margin-bottom: 240px;
 }
 
-.bank-details, .payment-due, .invoice-total {
+.bank-details, .invoice-due, .invoice-total {
     align-self: flex-start;
     display: flex;
     flex-direction: column;
@@ -170,18 +168,20 @@ beige #d6d1b9
 }
 
 .customer-relations {
-    font-weight: bold;
-    font-size: 1.5em;
+    font-family: 'Covered By Your Grace', cursive;
+    font-size: 4em;
+    color: #761c20;
     position: absolute;
     right: 120px;
-    bottom: 240px;
+    bottom: 320px;
 } 
 
 .company-credentials {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 420px;
+    margin-top: 480px;
+    /* border-top: 1px solid #bbb; */
 }
 
 .company-item {
@@ -190,6 +190,10 @@ beige #d6d1b9
 
 .company-court, .company-ust, .company-url {
     font-weight: bold;
+}
+
+button {
+
 }
 
 
