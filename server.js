@@ -8,7 +8,7 @@ server.use(express.static('public', {
     extensions: ['html']
 }));
 
-//server.use(express.json());
+server.use(express.json());
 
 //CouchDB
 const db = require('./db');
@@ -54,6 +54,7 @@ server.post('/save_customer', (req, res) => {
 //INIT
 const init = () => {
 
+    db.initBase();
     db.init();
     server.listen(80, err => console.log(err || 'Server läuft'));
 }
