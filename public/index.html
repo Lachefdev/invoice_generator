@@ -9,6 +9,53 @@
     <link rel="stylesheet" href="styles.css">
 
     <script src="index.js" type="module" defer></script>
+    <script>
+
+        const showResults = val => {
+
+            const inputField = document.querySelector('#product-name');
+            const res = document.querySelector('#result');
+
+            const selectItem = evt => {
+                inputField.value = evt.target.innerText;
+                res.innerHTML = ``;
+            }
+
+            res.innerHTML = '';
+            if (val == '') {
+                return;
+            }
+            let list = '';
+
+            fetch('/suggest?q=' + val).then(
+                response => {
+                    return response.json();
+                }).then(
+                    items => {
+                        for (let i = 0; i < items.length; i++) {
+                            list += '<li class="suggestedItem">' + items[i] + '</li>';
+                        }
+                        res.innerHTML = '<ul>' + list + '</ul>';
+                        const erg = [...(document.querySelectorAll('.suggestedItem'))];
+                        for (let j = 0; j < erg.length; j++) {
+                            let suggestedItem = erg[j];
+                            suggestedItem.addEventListener('click', selectItem)
+                        }
+                        //console.log(erg);
+
+                        return true;
+                    }
+                ).catch(
+                    err => {
+                        console.warn('Something went wrong.', err);
+                        return false;
+                    }
+                );
+
+        }
+
+
+    </script>
 
 </head>
 
@@ -99,57 +146,22 @@
             <span class="quantity">Quantity</span>
             <span class="subtotal">Subtotal</span>
         </div><br>
-        <form class="listing" action="">
+        <form class="listing" autocomplete="off">
             <div class="listings-item">
 
-                <input type="text" name="product-name" id="product-name">
-                <!-- Show Error -->
+                <div class="suggestion">
+                    <input type="text" name="product-name" id="product-name" onKeyUp="showResults(value)" />
+                    <span id="result"></span>
+                    <!-- Show Error -->
+                </div>
+
                 <input type="number" name="product-quantity" id="product-quantity">
                 <span class="quantity-error"></span>
                 <!-- Placed by catalogue -->
                 <input type="text" name="product-price" id="product-price">
 
             </div><br>
-            <div class="listings-item">
 
-                <input type="text" name="product-name" id="product-name">
-                <!-- Show Error -->
-                <input type="number" name="product-quantity" id="product-quantity">
-                <span class="quantity-error"></span>
-                <!-- Placed by catalogue -->
-                <input type="text" name="product-price" id="product-price">
-
-            </div><br>
-            <div class="listings-item">
-
-                <input type="text" name="product-name" id="product-name">
-                <!-- Show Error -->
-                <input type="number" name="product-quantity" id="product-quantity">
-                <span class="quantity-error"></span>
-                <!-- Placed by catalogue -->
-                <input type="text" name="product-price" id="product-price">
-
-            </div><br>
-            <div class="listings-item">
-
-                <input type="text" name="product-name" id="product-name">
-                <!-- Show Error -->
-                <input type="number" name="product-quantity" id="product-quantity">
-                <span class="quantity-error"></span>
-                <!-- Placed by catalogue -->
-                <input type="text" name="product-price" id="product-price">
-
-            </div><br>
-            <div class="listings-item">
-
-                <input type="text" name="product-name" id="product-name">
-                <!-- Show Error -->
-                <input type="number" name="product-quantity" id="product-quantity">
-                <span class="quantity-error"></span>
-                <!-- Placed by catalogue -->
-                <input type="text" name="product-price" id="product-price">
-
-            </div>
         </form><br><br>
         <!-- payment matters -->
         <div class="payment-matters">
@@ -170,7 +182,7 @@
             </div>
         </div>
         <span class="customer-relations">Thank you!</span>
-        
+
         <!-- footer -->
         <div class="company-credentials">
             <div class="company-item">

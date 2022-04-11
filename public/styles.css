@@ -68,47 +68,6 @@ beige #d6d1b9
     align-self: flex-start;
 }
 
-.form-item > input, .listings-item > input {
-
-    -webkit-appearance: none;
-
-    width: 100%;
-    max-width: 425px;
-
-    /* Fix for the appearance of Safari/iOS data fields*/
-    min-height: calc(0.9em + (0.8 * 2) +0.6em);
-
-    padding: 0.8em;
-    font-size: 0.9em;
-    font-family: 'Roboto', sans-serif;;
-
-    outline: none;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background: #f8f7f4;
-    transition: background 0.25s, border-color 0.25s, color 0.25s;
-}
-
-.form-item > input:focus, .listings-item > input:focus {
-    background: #fff;
-}
-
-.form-item > input::placeholder, .listings-item > input::placeholder {
-    color: #bbb;
-}
-
-/* Funktionalität JS */
-.form-error, .quantity-error {
-    color: #761c20;
-    background-color: #fff8f8;
-    border-color: #b2620b;
-    visibility: hidden;
-}
-
-.form-item > input + .form-error, .listings-item > input + .quantity-error {
-    visibility: visible;
-}
-
 .invoice-date {
     margin-left: 120px;
 }
@@ -148,6 +107,66 @@ beige #d6d1b9
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.form-item > input, .listings-item input {
+
+    -webkit-appearance: none;
+
+    width: 100%;
+    max-width: 425px;
+
+    /* Fix for the appearance of Safari/iOS data fields*/
+    min-height: calc(0.9em + (0.8 * 2) +0.6em);
+
+    padding: 0.8em;
+    font-size: 0.9em;
+    font-family: 'Roboto', sans-serif;;
+
+    outline: none;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #f8f7f4;
+    transition: background 0.25s, border-color 0.25s, color 0.25s;
+}
+
+.form-item > input:focus, .listings-item input:focus {
+    background: #fff;
+}
+
+.form-item > input::placeholder, .listings-item input::placeholder {
+    color: #bbb;
+}
+
+/* Funktionalität JS */
+.form-error, .quantity-error {
+    color: #761c20;
+    background-color: #fff8f8;
+    border-color: #b2620b;
+    visibility: hidden;
+}
+
+.form-item > input + .form-error, .listings-item input + .quantity-error {
+    visibility: visible;
+}
+
+.suggestion {
+    display: flex;
+    flex-direction: column;
+}
+
+#result ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#result ul li {
+    padding: 5px 0;
+}
+
+#result ul li:hover {
+    background: #fff;
 }
 
 .payment-matters {

@@ -78,9 +78,18 @@ const init = async () => {
     await initBase();
     db.init();
     items = await loadProducts();
+   
+    server.get('/suggest', (req, res, next) => {
+        console.log(req.query);
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify(items.filter(value => value.includes(req.query.q))));
+    });
     prices = await loadPrices();
-    //console.log(prices);
+
     server.listen(80, err => console.log(err || 'Server läuft'));
 }
 
 init();
+
+//await ersetzt im Code das .then()
+//damit der Befehl ausgeführt wird, muss in der umschließenden Funktion async eingetragen sein
