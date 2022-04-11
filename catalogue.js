@@ -50,23 +50,37 @@ const products = [
 
 const saveProducts = () => {
     let catalogueDB = db.use(baseName);
-    products.forEach(el => {return catalogueDB.insert(el)})
+    products.forEach(el => { return catalogueDB.insert(el) })
 }
 
-
-exports.initBase = () => {
-    db.list().then(
-        res => {
-            if (!res.includes(baseName)) db.create(baseName);
-            else true
-        }
-
-    ).then(
-        () => console.log('Base ist bereit!')
-
-    ).then(
-        saveProducts()
+exports.loadProducts = () => {
+    const catalogueDB = db.use(baseName);
+    return catalogueDB.list({ include_docs: true }).then(
+        data => data.rows.map(row => row.doc.name)
     )
 }
+
+exports.loadPrices = () => {
+    const catalogueDB = db.use(baseName);
+    return catalogueDB.list({ include_docs: true }).then(
+        data => data.rows.map(row => row.doc.price)
+    )
+}
+
+exports.initBase = () => {
+
+    db.list().then(
+        res => {
+            if (!res.includes(baseName)) {
+                db.create(baseName).then(
+                    saveProducts);
+                console.log('catalogueDB created!');
+            }
+            else {
+                console.log('.. and filled!')
+            }
+        })
+}
+
 
 

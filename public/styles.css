@@ -24,7 +24,7 @@ beige #d6d1b9
     border: 1px solid #aaa;
     border-radius: 5px;
 
-    font-family: 'Roboto', sans-serif;;
+    font-family: 'Roboto', sans-serif;
     font-size: 16px;
     line-height: 1.5em;
     color: #2d2d2d;
@@ -193,7 +193,24 @@ beige #d6d1b9
 }
 
 button {
+   
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    padding: 10px 16px;
+    margin: 35px 0 35px 15px;
 
+    color: #fff;
+    background: #761c20;
+    border: 2px solid #9e272d;
+    border-radius: 5px;
+
+    cursor: pointer;
+    outline: none;
+}
+
+button:active {
+    background: #9e272d;
 }
 
 
