@@ -11,28 +11,32 @@
     <script src="index.js" type="module" defer></script>
     <script>
 
-        const calculateSubtotal = () => {
-            let elSubtotal = document.querySelector('.product-subtotal');
-            let elQuantity = document.querySelector('.product-quantity');
-            elSubtotal.value = `${elQuantity.value * wantedIndex}`;
+        const calculateSubtotal = (r, wantedItem) => {
+
+            let elSubtotal = r.querySelector('.product-subtotal');
+            let elQuantity = r.querySelector('.product-quantity');
+
+            elSubtotal.value = elQuantity.value * wantedItem;
             renderNewInput(showResults);
         }
 
-        const showResults = val => {
-
-            let inputField = document.querySelector('.product-name');
-            let itemPrice = document.querySelector('.product-price');
-
-            let res = document.querySelector('.result');
-            /*for (let l = 0; l < resAll.length; l++ ){
-                return res = resAll[l];
-            }*/
+        const showResults = evt => {
+            
+            inputField = evt.target;
+            val = evt.target.value;
+            //console.log(evt, evt.target, val);
+            let neighbor = evt.target.parentNode;
+            let root = evt.target.parentNode.parentNode;            
+            let res = neighbor.querySelector('.result');
+            
+            let itemPrice = root.querySelector('.product-price');
 
             const selectItem = evt => {
+
                 inputField.value = evt.target.innerText;
                 itemPrice.value = wantedIndex;
                 res.innerHTML = ``;
-                calculateSubtotal(showResults);
+                calculateSubtotal(root, itemPrice.value);
             }
 
             res.innerHTML = '';
@@ -168,7 +172,7 @@
                 <span class="quantity-error"></span>
 
                 <div class="suggestion">
-                    <input type="text" name="product-name" class="product-name" onKeyUp="showResults(value)" />
+                    <input type="text" name="product-name" class="product-name"/>
                     <span class="result"></span>
                     <!-- Show Error -->
                 </div>
@@ -176,7 +180,7 @@
                 <input type="text" name="product-price" class="product-price">
                 <input type="text" name="product-subtotal" class="product-subtotal">
 
-            </div><br>
+            </div>
 
 
         </form><br><br>
@@ -226,6 +230,8 @@
 
     let wantedIndex;
     const formListing = document.querySelector('.listing');
+    let inputField = document.querySelector('.product-name');
+    inputField.addEventListener('keyup', () => showResults(event));
 
     const renderNewInput = (callback) => {
 
@@ -252,10 +258,10 @@
         elProduct.name = 'product-name';
         elProduct.className = 'product-name';
         elSuggestion.append(elProduct);
-        elProduct.addEventListener('click', callback);
+        elProduct.addEventListener('keyup', callback);
 
         let elResult = document.createElement('span');
-        elResult.className = 'product-result';
+        elResult.className = 'result';
         elSuggestion.append(elResult);
 
         let elPrice = document.createElement('input');
