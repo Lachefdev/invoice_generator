@@ -56,16 +56,11 @@ const saveProducts = () => {
 exports.loadProducts = () => {
     const catalogueDB = db.use(baseName);
     return catalogueDB.list({ include_docs: true }).then(
-        data => data.rows.map(row => row.doc.name)
-    )
+        data => data.rows.map(row => [row.doc.name, row.doc.price])
+        )
 }
 
-exports.loadPrices = () => {
-    const catalogueDB = db.use(baseName);
-    return catalogueDB.list({ include_docs: true }).then(
-        data => data.rows.map(row => row.doc.price)
-    )
-}
+
 
 exports.initBase = () => {
 

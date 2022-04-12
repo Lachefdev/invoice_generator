@@ -155,17 +155,17 @@ beige #d6d1b9
     flex-direction: column;
 }
 
-#result ul {
+.result ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
 
-#result ul li {
+.result ul li {
     padding: 5px 0;
 }
 
-#result ul li:hover {
+.result ul li:hover {
     background: #fff;
 }
 

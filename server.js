@@ -21,22 +21,6 @@ const formidable = require('formidable');
 //ROUTEN
 
 let items = [];
-let prices = [];
-
-
-/*server.get('/load_products', (req, res) => {
-    loadProducts().then(
-        data => res.send(JSON.stringify(data))
-    ).catch(
-        err => {
-            console.log(err);
-            res.send(JSON.stringify({
-                status: 'err',
-                err
-            }))
-        }
-    )
-})*/
 
 
 server.get('.upload', (req, res) => {
@@ -78,13 +62,18 @@ const init = async () => {
     await initBase();
     db.init();
     items = await loadProducts();
+    //console.log(items);
    
     server.get('/suggest', (req, res, next) => {
-        console.log(req.query);
+        //console.log(req.query);
         res.setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify(items.filter(value => value.includes(req.query.q))));
+        res.send(JSON.stringify(
+            items.map((item, index) => ({item, index})).filter(value => {
+                //console.log(value);
+                return value.item[0].includes(req.query.q)
+            })
+        ))
     });
-    prices = await loadPrices();
 
     server.listen(80, err => console.log(err || 'Server läuft'));
 }

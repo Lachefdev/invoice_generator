@@ -4,22 +4,6 @@ const myForm = document.querySelector('.form');
 const btnForm = document.querySelector('.btnCreate');
 
 
-/*const loadProducts = () => {
-    return new Promise((resolve, reject) => {
-        fetch('/load_products').then(
-            res => res.json()
-        ).then(
-            resolve
-        ).catch(
-            reject
-        )
-    })
-}
-
-const renderProducts = data => {
-    console.log(data)
-}*/
-
 
 const loadData = evt => {
 
