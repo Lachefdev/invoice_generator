@@ -11,13 +11,11 @@
     <script src="index.js" type="module" defer></script>
     <script>
 
-        //wenn Btn geklickt
         const calculateTotal = () => {
             let invoiceTotal = document.querySelector('.total-amount');
             let elSubtotalAll = [...(document.querySelectorAll('.product-subtotal'))];
-            invoiceTotal.innerHTML = `${elSubtotalAll.map(el => Number(el.value)).reduce((a, b) => a + b)} Dollar `;    
+            invoiceTotal.innerHTML = `${elSubtotalAll.map(el => Number(el.value)).reduce((a, b) => a + b)} Dollar `;
         }
-
 
         const calculateSubtotal = (r) => {
 
@@ -26,6 +24,7 @@
             let elPrice = r.querySelector('.product-price');
             elSubtotal.value = elQuantity.value * elPrice.value;
             //renderNewInput(showResults);
+            calculateTotal();
         }
 
         const showResults = evt => {
@@ -67,6 +66,8 @@
                         const erg = [...(document.querySelectorAll('.suggestedItem'))];
                         for (let j = 0; j < erg.length; j++) {
                             let suggestedItem = erg[j];
+                            //der Trick zwecks der Parameter
+                            //Fkt in Quasi-Eventfkt einbetten
                             suggestedItem.addEventListener('click', (evt) => selectItem(evt, j))
                         }
 
@@ -87,214 +88,198 @@
 
 <body>
 
-    <h1></h1>
-
     <div class="container">
-        <form class="form">
-            <!-- Logo missing -->
-            <div class="company-data">
-                <span class="company-name">YoTa Charms</span>
-                <span class="company-adress">Kettenschmiede 7</span>
-                <span class="company-location">32776 Ederhausen</span>
-            </div>
 
-            <!-- letter head -->
-            <div class="letter-head">
-                <div class="recipient-adress">
-                    <div class="first-line">
-                        <div class="form-item">
-                            <label for="recipient-name" class="form-label"></label>
-                            <input type="text" name="recipient-name" id="recipient-name" placeholder="name">
-                            <span class="form-error"></span>
-                        </div>
-                        <div class="form-item">
-                            <label for="recipient-last-name" class="form-label"></label>
-                            <input type="text" name="recipient-last-name" id="recipient-last-name"
-                                placeholder="last name">
-                            <span class="form-error"></span>
-                        </div>
-                    </div>
-                    <div class="second-line">
-                        <div class="form-item">
-                            <label for="recipient-road" class="form-label"></label>
-                            <input type="text" name="recipient-road" id="recipient-road" placeholder="road">
-                            <span class="form-error"></span>
-                        </div>
-                        <!-- Number.. maybe -->
-                        <div class="form-item">
-                            <label for="recipient-house-number" class="form-label"></label>
-                            <input type="text" name="recipient-house-number" id="recipient-house-number"
-                                placeholder="house number">
-                            <span class="form-error"></span>
-                        </div>
-                    </div>
-                    <div class="third-line">
-                        <!-- Number -->
-                        <div class="form-item">
-                            <label for="recipient-zip-code" class="form-label"></label>
-                            <input type="text" name="recipient-zip-code" id="recipient-zip-code" placeholder="zip code">
-                            <span class="form-error"></span>
-                        </div>
-                        <div class="form-item">
-                            <label for="recipient-city" class="form-label"></label>
-                            <input type="text" name="recipient-city" id="recipient-city" placeholder="city">
-                            <span class="form-error"></span>
-                        </div>
-                    </div>
+        <h1 class="noprint">This is an invoice generator<br><span id="link">..linked to CouchDB</span></h1>
 
-                    <button type="submit" class="btnSave" name="btnSave">Save</button>
+        <form class="form" autocomplete="off">
+            <div class="containerForm">
 
+                <div class="company-data">
+                    <span class="company-name">YoTa Charms</span>
+                    <span class="company-adress">Kettenschmiede 7</span>
+                    <span class="company-location">32776 Ederhausen</span>
                 </div>
-            </div>
 
-            <div>
-                <span class="invoice-date"></span><br><br>
-            </div>
+                <!-- letter head -->
+                <div class="letter-head">
+                    <div class="recipient-adress">
+                        <div class="first-line">
+                            <div class="form-item">
+                                <label for="recipient-name" class="form-label"></label>
+                                <input type="text" name="name" id="recipient-name" placeholder="name">
+                                <span class="form-error"></span>
+                            </div>
+                            <div class="form-item">
+                                <label for="recipient-last-name" class="form-label"></label>
+                                <input type="text" name="lastName" id="recipient-last-name" placeholder="last name">
+                                <span class="form-error"></span>
+                            </div>
+                        </div>
+                        <div class="second-line">
+                            <div class="form-item">
+                                <label for="recipient-road" class="form-label"></label>
+                                <input type="text" name="road" id="recipient-road" placeholder="road">
+                                <span class="form-error"></span>
+                            </div>
+                            <!-- Number.. maybe -->
+                            <div class="form-item">
+                                <label for="recipient-house-number" class="form-label"></label>
+                                <input type="text" name="houseNumber" id="recipient-house-number"
+                                    placeholder="house number">
+                                <span class="form-error"></span>
+                            </div>
+                        </div>
+                        <div class="third-line">
+                            <!-- Number -->
+                            <div class="form-item">
+                                <label for="recipient-zip-code" class="form-label"></label>
+                                <input type="text" name="zipCode" id="recipient-zip-code" placeholder="zip code">
+                                <span class="form-error"></span>
+                            </div>
+                            <div class="form-item">
+                                <label for="recipient-city" class="form-label"></label>
+                                <input type="text" name="city" id="recipient-city" placeholder="city">
+                                <span class="form-error"></span>
+                            </div>
+                        </div>
 
-            <!-- subject -->
-            <div class="subject-line">
-                <div class="left-hand">
-                    <span class="invoice-title">Invoice</span>
-                    <span class="invoice-id"></span>
-                    <!-- fortlaufend -->
+                    </div>
                 </div>
-                <div class="right-hand"><br><br><br>
-                    <span class="customer-id"></span>
-                    <!-- System überlegen -->
+
+                <div>
+                    <span class="invoice-date" name="date"></span>
                 </div>
+
+                <!-- subject -->
+                <div class="subject-line">
+                    <div class="left-hand">
+                        <span class="invoice-title">Invoice</span>
+                        <span class="invoice-id" name="invoice">#000</span>
+                    </div>
+                    <div class="right-hand"><br>
+                        <span class="customer-id" name="customer-id"></span>
+                    </div>
+                </div>
+
+
+                <!-- purchase-overview -->
+                <div class="legend">
+                    <span class="quantity">Quantity</span>
+                    <span class="item">Item</span>
+                    <span class="price">Price per Unit</span>
+                    <span class="subtotal">Subtotal</span>
+                </div><br>
+                <div class="listing">
+
+                    <div class="listings-item">
+
+                        <input type="number" class="product-quantity">
+                        <span class="quantity-error"></span>
+
+                        <div class="suggestion">
+                            <input type="text" class="product-name" />
+                            <span class="result"></span>
+                            <!-- Show Error -->
+                        </div>
+
+                        <input type="text" class="product-price">
+                        <input type="text" class="product-subtotal">
+
+                    </div><br>
+
+                    <div class="listings-item">
+
+                        <input type="number" class="product-quantity">
+                        <span class="quantity-error"></span>
+
+                        <div class="suggestion">
+                            <input type="text" class="product-name" />
+                            <span class="result"></span>
+                            <!-- Show Error -->
+                        </div>
+
+                        <input type="text" class="product-price">
+                        <input type="text" class="product-subtotal">
+
+                    </div><br>
+
+                    <div class="listings-item">
+
+                        <input type="number" class="product-quantity">
+                        <span class="quantity-error"></span>
+
+                        <div class="suggestion">
+                            <input type="text" class="product-name" />
+                            <span class="result"></span>
+                            <!-- Show Error -->
+                        </div>
+
+                        <input type="text" class="product-price">
+                        <input type="text" class="product-subtotal">
+
+                    </div><br>
+
+                    <div class="listings-item">
+
+                        <input type="number" class="product-quantity">
+                        <span class="quantity-error"></span>
+
+                        <div class="suggestion">
+                            <input type="text" class="product-name" />
+                            <span class="result"></span>
+                            <!-- Show Error -->
+                        </div>
+
+                        <input type="text" class="product-price">
+                        <input type="text" class="product-subtotal">
+
+                    </div><br>
+
+                </div><br><br>
+                <!-- payment matters -->
+                <div class="payment-matters">
+                    <div class="bank-details">
+                        <span class="bank-title">Bank details</span>
+                        <span class="IBAN">DE02120300000000202051</span>
+                        <span class="financial-institution">DKB</span>
+                    </div>
+                    <div class="invoice-due">
+                        <span class="due-title">Due by</span>
+                        <span class="due-date" name="due date"></span>
+                    </div>
+                    <div class="invoice-total">
+                        <span class="total-title">Total</span>
+                        <span class="total-amount" name="total"></span>
+                        <span class="taxes">includes 19% VAT</span>
+                    </div>
+                </div>
+                <span class="customer-relations">Thank you!</span>
+
+                <!-- footer -->
+                <div class="company-credentials">
+                    <div class="company-item">
+                        <span class="company-court">Amtsgericht</span>
+                        <span class="company-court-name">Amberg</span>
+                    </div>
+                    <div class="company-item">
+                        <span class="company-ust">USt-IdNr.</span>
+                        <span class="company-ust-name">DE999999999</span>
+                    </div>
+                    <div class="company-item">
+                        <span class="company-url">Website</span>
+                        <span class="company-url-name">www.yota-charms.com</span>
+                    </div>
+                </div>
+
             </div>
 
+            <button type="submit" class="btnCreate noprint">Print</button>
 
         </form>
-        <!-- purchase-overview -->
-        <div class="legend">
-            <span class="quantity">Quantity</span>
-            <span class="item">Item</span>
-            <span class="price">Price per Unit</span>
-            <span class="subtotal">Subtotal</span>
-        </div><br>
-        <form class="listing" autocomplete="off">
-            <div class="listings-item">
-
-                <input type="number" name="product-quantity" class="product-quantity" placeholder="1">
-                <span class="quantity-error"></span>
-
-                <div class="suggestion">
-                    <input type="text" name="product-name" class="product-name" />
-                    <span class="result"></span>
-                    <!-- Show Error -->
-                </div>
-
-                <input type="text" name="product-price" class="product-price">
-                <input type="text" name="product-subtotal" class="product-subtotal">
-
-            </div><br>
-
-            <div class="listings-item">
-
-                <input type="number" name="product-quantity" class="product-quantity" placeholder="1">
-                <span class="quantity-error"></span>
-
-                <div class="suggestion">
-                    <input type="text" name="product-name" class="product-name" />
-                    <span class="result"></span>
-                    <!-- Show Error -->
-                </div>
-
-                <input type="text" name="product-price" class="product-price">
-                <input type="text" name="product-subtotal" class="product-subtotal">
-
-            </div><br>
-
-            <div class="listings-item">
-
-                <input type="number" name="product-quantity" class="product-quantity" placeholder="1">
-                <span class="quantity-error"></span>
-
-                <div class="suggestion">
-                    <input type="text" name="product-name" class="product-name" />
-                    <span class="result"></span>
-                    <!-- Show Error -->
-                </div>
-
-                <input type="text" name="product-price" class="product-price">
-                <input type="text" name="product-subtotal" class="product-subtotal">
-
-            </div><br>
-
-            <div class="listings-item">
-
-                <input type="number" name="product-quantity" class="product-quantity" placeholder="1">
-                <span class="quantity-error"></span>
-
-                <div class="suggestion">
-                    <input type="text" name="product-name" class="product-name" />
-                    <span class="result"></span>
-                    <!-- Show Error -->
-                </div>
-
-                <input type="text" name="product-price" class="product-price">
-                <input type="text" name="product-subtotal" class="product-subtotal">
-
-            </div><br>
-
-            <div class="listings-item">
-
-                <input type="number" name="product-quantity" class="product-quantity" placeholder="1">
-                <span class="quantity-error"></span>
-
-                <div class="suggestion">
-                    <input type="text" name="product-name" class="product-name" />
-                    <span class="result"></span>
-                    <!-- Show Error -->
-                </div>
-
-                <input type="text" name="product-price" class="product-price">
-                <input type="text" name="product-subtotal" class="product-subtotal">
-
-            </div><br>
 
 
-        </form><br><br>
-        <!-- payment matters -->
-        <div class="payment-matters">
-            <div class="bank-details">
-                <span class="bank-title">Bank details</span>
-                <span class="IBAN">DE02120300000000202051</span>
-                <span class="financial-institution">DKB</span>
-            </div>
-            <div class="invoice-due">
-                <span class="due-title">Due by</span>
-                <span class="due-date"></span>
-            </div>
-            <div class="invoice-total">
-                <span class="total-title">Total</span>
-                <!-- calculated by listed items -->
-                <span class="total-amount"></span>
-                <span class="taxes">includes 19% VAT</span>
-            </div>
-        </div>
-        <span class="customer-relations">Thank you!</span>
-
-        <!-- footer -->
-        <div class="company-credentials">
-            <div class="company-item">
-                <span class="company-court">Amtsgericht</span>
-                <span class="company-court-name">Amberg</span>
-            </div>
-            <div class="company-item">
-                <span class="company-ust">USt-IdNr.</span>
-                <span class="company-ust-name">DE999999999</span>
-            </div>
-            <div class="company-item">
-                <span class="company-url">Website</span>
-                <span class="company-url-name">www.yota-charms.com</span>
-            </div>
-        </div>
     </div>
-
-    <button type="submit" class="btnCreate">Create PDF</button>
-
 
 </body>
 
@@ -306,7 +291,7 @@
     for (let a = 0; a < inputFieldAll.length; a++) {
         inputField = inputFieldAll[a];
         inputField.addEventListener('keyup', showResults);
-    }
+    }    
 
     /*const renderNewInput = (callback) => {
 
@@ -364,7 +349,9 @@
     customerId.innerHTML = `Customer #${String(createNumber(10, 99)) + String(createNumber(10, 99)) + String(createNumber(10, 99))}`;
 
     let invoiceId = $('.invoice-id');
-    invoiceId.innerHTML = '#' + '000' + `${387}`;
+    let counter = 387;
+    let standard = invoiceId.innerHTML.concat(String(counter));
+    invoiceId.innerHTML = standard;
 
     let invoiceDate = $('.invoice-date');
     let date = new Date(), options = { year: 'numeric', month: 'long', day: 'numeric' };

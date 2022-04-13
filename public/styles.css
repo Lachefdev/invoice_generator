@@ -1,9 +1,7 @@
 /* 
-
 orange #b2620b
 dunkelrot #761c20
 beige #d6d1b9
-
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&family=Roboto:wght@400;700&display=swap');
@@ -14,20 +12,54 @@ beige #d6d1b9
     box-sizing: border-box;
   }
 
-.container {
+  .container {
 
+    width: 100%;
     position: relative;
     display: block;
     padding: 35px;
     margin: 5px;
-    
-    border: 1px solid #aaa;
-    border-radius: 5px;
 
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     line-height: 1.5em;
     color: #2d2d2d;
+
+}
+
+h1 {
+    display: inline-block;
+    color: #ddd;
+    padding-left: 125px;
+    padding-top: 15px;
+    border-top: 4px dotted #2d2d2d;
+    margin: 55px 0 125px 125px;
+}
+
+h1 > span {
+    font-size: 1em;
+    font-family: 'Covered By Your Grace', cursive;
+    color: #761c20;
+    line-height: 0.5em;
+    padding-left: 85px;
+}
+
+.containerForm {    
+
+    position: relative;
+    display: block;
+    padding: 35px;
+    margin: 5px;
+
+    border: 1px solid #aaa;
+    border-radius: 5px;
+
+}
+
+.form {
+    width: 210mm;
+    height: 297mm;
+    margin: auto;
 }
 
 .form * {
@@ -42,21 +74,21 @@ beige #d6d1b9
 }
 
 .company-name {
-    margin-left: 320px;
+    margin-left: 15%;
 }
 
 .company-location {
-    margin-right: 320px;
+    margin-right: 15%;
 }
 
 .letter-head {
-    margin-bottom: 240px;
+    margin-bottom: 10%;
 }
 
 .recipient-adress {
     align-self: flex-start;
-    margin-top: 120px;
-    margin-left: 60px;
+    margin-top: 5%;
+    margin-left: 5%;
 }
 
 .first-line, .second-line , .third-line {
@@ -69,12 +101,12 @@ beige #d6d1b9
 }
 
 .invoice-date {
-    margin-left: 120px;
+    margin-left: 5%;
 }
 
 .subject-line {
-    margin-bottom: 180px;
-    margin-left: 120px;
+    margin-bottom: 10%;
+    margin-left: 5%;
     display: flex;
     justify-content: space-between;
 }
@@ -90,12 +122,12 @@ beige #d6d1b9
 }
 
 .customer-id {
-    margin-right: 60px;
+    margin-right: 20%;
     font-weight: bold;
 }
 
-/* Positionierung % */
 .legend {
+    color: #b2620b;
     font-weight: bold;
     text-transform: uppercase;
     display: flex;
@@ -106,7 +138,6 @@ beige #d6d1b9
 .listings-item {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
 }
 
 .form-item > input, .listings-item input {
@@ -121,7 +152,7 @@ beige #d6d1b9
 
     padding: 0.8em;
     font-size: 0.9em;
-    font-family: 'Roboto', sans-serif;;
+    font-family: 'Roboto', sans-serif;
 
     outline: none;
     border: 1px solid #ddd;
@@ -150,9 +181,18 @@ beige #d6d1b9
     visibility: visible;
 }
 
+.product-quantity {
+    flex: 1;
+}
+
+.product-price, .product-subtotal{
+    flex: 3;
+}
+
 .suggestion {
     display: flex;
     flex-direction: column;
+    flex: 6;
 }
 
 .result ul {
@@ -162,7 +202,7 @@ beige #d6d1b9
 }
 
 .result ul li {
-    padding: 5px 0;
+    padding: 5px 15px;
 }
 
 .result ul li:hover {
@@ -173,7 +213,7 @@ beige #d6d1b9
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 240px;
+    margin-bottom: 15%;
 }
 
 .bank-details, .invoice-due, .invoice-total {
@@ -186,21 +226,26 @@ beige #d6d1b9
     font-weight: bold;
 }
 
+.total-amount {
+    color: #b2620b;
+    font-family: 'Covered By Your Grace', cursive;
+    font-size: 1.3em;
+}
+
 .customer-relations {
     font-family: 'Covered By Your Grace', cursive;
-    font-size: 4em;
+    font-size: 3.5em;
     color: #761c20;
     position: absolute;
-    right: 120px;
-    bottom: 320px;
+    right: 15%;
+    bottom: 10%;
 } 
 
 .company-credentials {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 480px;
-    /* border-top: 1px solid #bbb; */
+    margin-top: 30%;
 }
 
 .company-item {
@@ -217,7 +262,9 @@ button {
     font-size: 1.1em;
     font-weight: bold;
     padding: 10px 16px;
-    margin: 35px 0 35px 15px;
+
+    display: block;
+    margin: 85px auto 125px;
 
     color: #fff;
     background: #761c20;
@@ -231,6 +278,60 @@ button {
 button:active {
     background: #9e272d;
 }
+
+
+
+/*Print mode settings*/
+@media print {
+
+body {
+    height: 99%;
+}
+
+.noprint {
+    display: none;
+}
+
+.containerForm {    
+    border: none;
+    
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.5em;
+    color: #2d2d2d;
+}
+
+.letter-head {
+    margin-bottom: 15%;
+    margin-top: 10%;
+}
+
+.recipient-adress {
+    background-color: #f8f7f4;
+}
+
+.form-item input, .listings-item input {
+    border: unset;
+    padding: 0;
+}
+
+.product-quantity, .product-name, .product-price {
+    text-align: center;
+}
+
+
+.product-subtotal {
+    text-align: end;
+}
+
+
+.form-item > input::placeholder, .listings-item input::placeholder {
+    opacity: 0;
+}
+
+}
+
+
 
 
 

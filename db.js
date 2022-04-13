@@ -10,18 +10,18 @@ const baseName = 'catalogue';
 
 //FUNKTIONEN
 
-exports.loadCustomers = () => {
+/*exports.loadCustomers = () => {
     const customerDB = db.use(dbName);
     return customerDB.list({ incluse_docs: true }).then(
         data => data.rows.map(row => row.doc)
     ).then(
         data => data.filter((doc => !(doc._id.startsWith('_design'))))
     )
-}
+}*/
 
-exports.saveCustomer = () => {
+exports.saveCustomer = (customer) => {
     const customerDB = db.use(dbName);
-    return customerDB.insert()
+    return customerDB.insert(customer)
 }
 
 exports.init = () => {

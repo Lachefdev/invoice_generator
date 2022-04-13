@@ -1,18 +1,32 @@
 'use strict';
 
 const myForm = document.querySelector('.form');
-const btnForm = document.querySelector('.btnCreate');
 
+const customerId = $('.customer-id');
+const invoice = $('.invoice-id');
+const invoiceDate = $('.invoice-date');
+const amount = $('.total-amount');
+const dueDate = $('.due-date');
 
+//FUNKTIONEN
 
-const loadData = evt => {
+const handleForm = evt => {
+
+    window.print();
 
     evt.preventDefault();
 
     return new Promise((resolve, reject) => {
-        fetch('/upload', {
+        const formData = new FormData(myForm);
+        formData.append('customerId', customerId.innerHTML);
+        formData.append('invoice', invoice.innerHTML);
+        formData.append('invoiceDate', invoiceDate.innerHTML);
+        formData.append('amount', amount.innerHTML);
+        formData.append('dueDate', dueDate.innerHTML);
+
+        fetch('/form_upload', {
             method: 'POST',
-            body: new FormData(myForm)
+            body: formData
         }).then(
             res => res.text()
         ).then(
@@ -20,29 +34,14 @@ const loadData = evt => {
         ).catch(
             reject
         )
-    })
-}
-
-const saveData = () => {
+    });
 
 }
 
 
 const init = () => {
 
-    /*loadProducts().then(
-        renderProducts
-    ).catch(
-        console.warn
-    );*/
-
-    myForm.addEventListener('submit', loadData);
-    btnForm.addEventListener('click', generateInvoice);
-    loadData().then(
-        saveData
-    ).catch(
-        console.warn
-    )
+    myForm.addEventListener('submit', handleForm);
 
 }
 

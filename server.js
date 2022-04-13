@@ -1,6 +1,7 @@
 'use strict';
 
-const { initBase, loadProducts, loadPrices } = require('./catalogue');
+const { initBase, loadProducts } = require('./catalogue');
+const { saveCustomer } = require('./db');
 
 //Express
 const express = require('express');
@@ -15,17 +16,32 @@ server.use(express.json());
 //CouchDB
 const db = require('./db');
 
-//Formidable
+//Formidable/Puppeteer
 const formidable = require('formidable');
 
 //ROUTEN
 
 let items = [];
 
+server.post('/form_upload', (req, res) => {
+    const form = formidable(req);
 
-server.get('.upload', (req, res) => {
+    form.parse(req, (err, felder, dateien) => {
+        if (err) console.log(err);
+        else {
+            console.log(felder);
+            db.saveCustomer(felder).then(
+                () => res.send('Daten gesichert!')
+            );
+        };
+    })
+
+})
+
+
+/*server.get('load_customers', (req, res) => {
     loadCustomers().then(
-        console.log
+        data => res.send(JSON.stringify(data))
     ).catch(
         err => {
             console.log(err);
@@ -35,26 +51,8 @@ server.get('.upload', (req, res) => {
             }))
         }
     )
-})
+})*/
 
-
-server.post('/upload', (req, res) => {
-    const form = formidable(req);
-
-    form.parse(req, (err, felder, dateien) => {
-        if (err) console.log(err);
-        else {
-            console.log(felder);
-            console.log(dateien);
-        };
-    })
-})
-
-server.post('/save_customer', (req, res) => {
-    db.saveCustomer(req.body).then(
-        () => res.send('Daten gesichert!')
-    );
-})
 
 
 //INIT
@@ -63,12 +61,12 @@ const init = async () => {
     db.init();
     items = await loadProducts();
     //console.log(items);
-   
+
     server.get('/suggest', (req, res, next) => {
         //console.log(req.query);
         res.setHeader('Content-Type', 'application/json');
         res.send(JSON.stringify(
-            items.map((item, index) => ({item, index})).filter(value => {
+            items.map((item, index) => ({ item, index })).filter(value => {
                 //console.log(value);
                 return value.item[0].includes(req.query.q)
             })
