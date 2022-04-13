@@ -11,32 +11,40 @@
     <script src="index.js" type="module" defer></script>
     <script>
 
-        const calculateSubtotal = (r, wantedItem) => {
+        //wenn Btn geklickt
+        const calculateTotal = () => {
+            let invoiceTotal = document.querySelector('.total-amount');
+            let elSubtotalAll = [...(document.querySelectorAll('.product-subtotal'))];
+            invoiceTotal.innerHTML = `${elSubtotalAll.map(el => Number(el.value)).reduce((a, b) => a + b)} Dollar `;    
+        }
+
+
+        const calculateSubtotal = (r) => {
 
             let elSubtotal = r.querySelector('.product-subtotal');
             let elQuantity = r.querySelector('.product-quantity');
-
-            elSubtotal.value = elQuantity.value * wantedItem;
-            renderNewInput(showResults);
+            let elPrice = r.querySelector('.product-price');
+            elSubtotal.value = elQuantity.value * elPrice.value;
+            //renderNewInput(showResults);
         }
 
         const showResults = evt => {
-            
+
+            let root = evt.target.parentNode.parentNode;
             inputField = evt.target;
             val = evt.target.value;
             //console.log(evt, evt.target, val);
             let neighbor = evt.target.parentNode;
-            let root = evt.target.parentNode.parentNode;            
             let res = neighbor.querySelector('.result');
-            
+
             let itemPrice = root.querySelector('.product-price');
 
-            const selectItem = evt => {
+            const selectItem = (evt, j) => {
 
                 inputField.value = evt.target.innerText;
-                itemPrice.value = wantedIndex;
                 res.innerHTML = ``;
-                calculateSubtotal(root, itemPrice.value);
+                itemPrice.value = wantedIndex[j];
+                calculateSubtotal(root);
             }
 
             res.innerHTML = '';
@@ -52,14 +60,14 @@
                     data => {
                         for (let i = 0; i < data.length; i++) {
                             list += '<li class="suggestedItem">' + data[i].item[0] + '</li>';
-                            wantedIndex = data[i].item[1];
+                            wantedIndex.push(data[i].item[1]);
                         }
                         res.innerHTML = '<ul>' + list + '</ul>';
 
                         const erg = [...(document.querySelectorAll('.suggestedItem'))];
                         for (let j = 0; j < erg.length; j++) {
                             let suggestedItem = erg[j];
-                            suggestedItem.addEventListener('click', selectItem)
+                            suggestedItem.addEventListener('click', (evt) => selectItem(evt, j))
                         }
 
                         return true;
@@ -168,11 +176,11 @@
         <form class="listing" autocomplete="off">
             <div class="listings-item">
 
-                <input type="number" name="product-quantity" class="product-quantity">
+                <input type="number" name="product-quantity" class="product-quantity" placeholder="1">
                 <span class="quantity-error"></span>
 
                 <div class="suggestion">
-                    <input type="text" name="product-name" class="product-name"/>
+                    <input type="text" name="product-name" class="product-name" />
                     <span class="result"></span>
                     <!-- Show Error -->
                 </div>
@@ -180,7 +188,71 @@
                 <input type="text" name="product-price" class="product-price">
                 <input type="text" name="product-subtotal" class="product-subtotal">
 
-            </div>
+            </div><br>
+
+            <div class="listings-item">
+
+                <input type="number" name="product-quantity" class="product-quantity" placeholder="1">
+                <span class="quantity-error"></span>
+
+                <div class="suggestion">
+                    <input type="text" name="product-name" class="product-name" />
+                    <span class="result"></span>
+                    <!-- Show Error -->
+                </div>
+
+                <input type="text" name="product-price" class="product-price">
+                <input type="text" name="product-subtotal" class="product-subtotal">
+
+            </div><br>
+
+            <div class="listings-item">
+
+                <input type="number" name="product-quantity" class="product-quantity" placeholder="1">
+                <span class="quantity-error"></span>
+
+                <div class="suggestion">
+                    <input type="text" name="product-name" class="product-name" />
+                    <span class="result"></span>
+                    <!-- Show Error -->
+                </div>
+
+                <input type="text" name="product-price" class="product-price">
+                <input type="text" name="product-subtotal" class="product-subtotal">
+
+            </div><br>
+
+            <div class="listings-item">
+
+                <input type="number" name="product-quantity" class="product-quantity" placeholder="1">
+                <span class="quantity-error"></span>
+
+                <div class="suggestion">
+                    <input type="text" name="product-name" class="product-name" />
+                    <span class="result"></span>
+                    <!-- Show Error -->
+                </div>
+
+                <input type="text" name="product-price" class="product-price">
+                <input type="text" name="product-subtotal" class="product-subtotal">
+
+            </div><br>
+
+            <div class="listings-item">
+
+                <input type="number" name="product-quantity" class="product-quantity" placeholder="1">
+                <span class="quantity-error"></span>
+
+                <div class="suggestion">
+                    <input type="text" name="product-name" class="product-name" />
+                    <span class="result"></span>
+                    <!-- Show Error -->
+                </div>
+
+                <input type="text" name="product-price" class="product-price">
+                <input type="text" name="product-subtotal" class="product-subtotal">
+
+            </div><br>
 
 
         </form><br><br>
@@ -228,12 +300,15 @@
 
 <script>
 
-    let wantedIndex;
+    let inputField, wantedIndex = [];
     const formListing = document.querySelector('.listing');
-    let inputField = document.querySelector('.product-name');
-    inputField.addEventListener('keyup', () => showResults(event));
+    let inputFieldAll = [...(document.querySelectorAll('.product-name'))];
+    for (let a = 0; a < inputFieldAll.length; a++) {
+        inputField = inputFieldAll[a];
+        inputField.addEventListener('keyup', showResults);
+    }
 
-    const renderNewInput = (callback) => {
+    /*const renderNewInput = (callback) => {
 
         let listingsItem = document.createElement('div');
         listingsItem.className = 'listings-item';
@@ -243,6 +318,7 @@
         elQuantity.type = 'number';
         elQuantity.name = 'product-quantity';
         elQuantity.className = 'product-quantity';
+        elQuantity.placeholder = 1;
         listingsItem.append(elQuantity);
 
         let quantityError = document.createElement('span');
@@ -276,7 +352,7 @@
         elSubtotal.className = 'subtotal';
         listingsItem.append(elSubtotal);
 
-    }
+    }*/
 
 
     const $ = selector => {
@@ -300,9 +376,6 @@
     let n1 = n[0];
     let x = new Date(new Date(n1).setDate(new Date(n1).getDate() + 30));
     invoiceDue.innerHTML = x.toLocaleString('de-DE', options);
-
-    let invoiceTotal = $('.total-amount');
-
 
 </script>
 
