@@ -2,11 +2,11 @@
 
 const myForm = document.querySelector('.form');
 
-const customerId = $('.customer-id');
-const invoice = $('.invoice-id');
-const invoiceDate = $('.invoice-date');
-const amount = $('.total-amount');
-const dueDate = $('.due-date');
+const customerId = document.querySelector('.customer-id');
+const invoice = document.querySelector('.invoice-id');
+const invoiceDate = document.querySelector('.invoice-date');
+const amount = document.querySelector('.total-amount');
+const dueDate = document.querySelector('.due-date');
 
 //FUNKTIONEN
 

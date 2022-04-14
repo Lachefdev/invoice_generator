@@ -29,6 +29,11 @@ const products = [
         id: 6,
         name: 'Party princess',
         price: 32,
+    },
+    {
+        id: 7,
+        name: 'Blue hole',
+        price: 34,
     }
 ];
 
@@ -42,9 +47,8 @@ exports.loadProducts = () => {
     const catalogueDB = db.use(baseName);
     return catalogueDB.list({ include_docs: true }).then(
         data => data.rows.map(row => [row.doc.name, row.doc.price])
-        )
+    )
 }
-
 
 
 exports.initBase = () => {
@@ -53,7 +57,8 @@ exports.initBase = () => {
         res => {
             if (!res.includes(baseName)) {
                 db.create(baseName).then(
-                    saveProducts);
+                    saveProducts
+                );
                 console.log('catalogueDB created!');
             }
             else {

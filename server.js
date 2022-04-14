@@ -3,7 +3,7 @@
 const { initBase, loadProducts } = require('./catalogue');
 const { saveCustomer } = require('./db');
 
-//Express
+//Express/CouchDB/Formidable
 const express = require('express');
 const server = express();
 
@@ -13,10 +13,7 @@ server.use(express.static('public', {
 
 server.use(express.json());
 
-//CouchDB
 const db = require('./db');
-
-//Formidable/Puppeteer
 const formidable = require('formidable');
 
 //ROUTEN
@@ -60,10 +57,8 @@ const init = async () => {
     await initBase();
     db.init();
     items = await loadProducts();
-    //console.log(items);
 
     server.get('/suggest', (req, res, next) => {
-        //console.log(req.query);
         res.setHeader('Content-Type', 'application/json');
         res.send(JSON.stringify(
             items.map((item, index) => ({ item, index })).filter(value => {
@@ -78,5 +73,5 @@ const init = async () => {
 
 init();
 
-//await ersetzt im Code das .then()
+//Codezucker: await ersetzt im Code das .then()
 //damit der Befehl ausgeführt wird, muss in der umschließenden Funktion async eingetragen sein

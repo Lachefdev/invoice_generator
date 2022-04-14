@@ -18,28 +18,24 @@
         }
 
         const calculateSubtotal = (r) => {
-
             let elSubtotal = r.querySelector('.product-subtotal');
             let elQuantity = r.querySelector('.product-quantity');
             let elPrice = r.querySelector('.product-price');
             elSubtotal.value = elQuantity.value * elPrice.value;
-            //renderNewInput(showResults);
             calculateTotal();
         }
 
         const showResults = evt => {
-
+            
             let root = evt.target.parentNode.parentNode;
             inputField = evt.target;
             val = evt.target.value;
             //console.log(evt, evt.target, val);
             let neighbor = evt.target.parentNode;
             let res = neighbor.querySelector('.result');
-
             let itemPrice = root.querySelector('.product-price');
 
             const selectItem = (evt, j) => {
-
                 inputField.value = evt.target.innerText;
                 res.innerHTML = ``;
                 itemPrice.value = wantedIndex[j];
@@ -66,11 +62,9 @@
                         const erg = [...(document.querySelectorAll('.suggestedItem'))];
                         for (let j = 0; j < erg.length; j++) {
                             let suggestedItem = erg[j];
-                            //der Trick zwecks der Parameter
-                            //Fkt in Quasi-Eventfkt einbetten
+                            //der Trick zwecks der Parameter -> Fkt in Quasi-Eventfkt einbetten
                             suggestedItem.addEventListener('click', (evt) => selectItem(evt, j))
                         }
-
                         return true;
                     }
                 ).catch(
@@ -122,7 +116,6 @@
                                 <input type="text" name="road" id="recipient-road" placeholder="road">
                                 <span class="form-error"></span>
                             </div>
-                            <!-- Number.. maybe -->
                             <div class="form-item">
                                 <label for="recipient-house-number" class="form-label"></label>
                                 <input type="text" name="houseNumber" id="recipient-house-number"
@@ -131,7 +124,6 @@
                             </div>
                         </div>
                         <div class="third-line">
-                            <!-- Number -->
                             <div class="form-item">
                                 <label for="recipient-zip-code" class="form-label"></label>
                                 <input type="text" name="zipCode" id="recipient-zip-code" placeholder="zip code">
@@ -180,7 +172,6 @@
                         <div class="suggestion">
                             <input type="text" class="product-name" />
                             <span class="result"></span>
-                            <!-- Show Error -->
                         </div>
 
                         <input type="text" class="product-price">
@@ -196,7 +187,6 @@
                         <div class="suggestion">
                             <input type="text" class="product-name" />
                             <span class="result"></span>
-                            <!-- Show Error -->
                         </div>
 
                         <input type="text" class="product-price">
@@ -212,7 +202,6 @@
                         <div class="suggestion">
                             <input type="text" class="product-name" />
                             <span class="result"></span>
-                            <!-- Show Error -->
                         </div>
 
                         <input type="text" class="product-price">
@@ -228,7 +217,6 @@
                         <div class="suggestion">
                             <input type="text" class="product-name" />
                             <span class="result"></span>
-                            <!-- Show Error -->
                         </div>
 
                         <input type="text" class="product-price">
@@ -291,73 +279,23 @@
     for (let a = 0; a < inputFieldAll.length; a++) {
         inputField = inputFieldAll[a];
         inputField.addEventListener('keyup', showResults);
-    }    
-
-    /*const renderNewInput = (callback) => {
-
-        let listingsItem = document.createElement('div');
-        listingsItem.className = 'listings-item';
-        formListing.append(listingsItem);
-
-        let elQuantity = document.createElement('input');
-        elQuantity.type = 'number';
-        elQuantity.name = 'product-quantity';
-        elQuantity.className = 'product-quantity';
-        elQuantity.placeholder = 1;
-        listingsItem.append(elQuantity);
-
-        let quantityError = document.createElement('span');
-        quantityError.className = 'quantity-error';
-        elQuantity.append(quantityError);
-
-        let elSuggestion = document.createElement('div');
-        elSuggestion.className = 'suggestion';
-        listingsItem.append(elSuggestion);
-
-        let elProduct = document.createElement('input');
-        elProduct.type = 'text';
-        elProduct.name = 'product-name';
-        elProduct.className = 'product-name';
-        elSuggestion.append(elProduct);
-        elProduct.addEventListener('keyup', callback);
-
-        let elResult = document.createElement('span');
-        elResult.className = 'result';
-        elSuggestion.append(elResult);
-
-        let elPrice = document.createElement('input');
-        elPrice.type = 'text';
-        elPrice.name = 'product-price';
-        elPrice.className = 'product-price';
-        listingsItem.append(elPrice);
-
-        let elSubtotal = document.createElement('input');
-        elSubtotal.type = 'text';
-        elSubtotal.name = 'subtotal';
-        elSubtotal.className = 'subtotal';
-        listingsItem.append(elSubtotal);
-
-    }*/
-
-
-    const $ = selector => {
-        return document.querySelector(selector)
     }
 
-    let customerId = $('.customer-id');
+    //Automatisch generierte Daten
+    let customerId = document.querySelector('.customer-id');
     const createNumber = (min, max) => ~~(Math.random() * (max - min + 1) + min);
     customerId.innerHTML = `Customer #${String(createNumber(10, 99)) + String(createNumber(10, 99)) + String(createNumber(10, 99))}`;
 
-    let invoiceId = $('.invoice-id');
+    let invoiceId = document.querySelector('.invoice-id');
     let counter = 387;
     let standard = invoiceId.innerHTML.concat(String(counter));
     invoiceId.innerHTML = standard;
 
-    let invoiceDate = $('.invoice-date');
+    let invoiceDate = document.querySelector('.invoice-date');
     let date = new Date(), options = { year: 'numeric', month: 'long', day: 'numeric' };
     invoiceDate.innerHTML = date.toLocaleString('de-DE', options);
 
-    let invoiceDue = $('.due-date');
+    let invoiceDue = document.querySelector('.due-date');
     let iso = date.toISOString();
     let n = iso.split('T');
     let n1 = n[0];
